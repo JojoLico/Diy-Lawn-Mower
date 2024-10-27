@@ -1,14 +1,11 @@
 //---------- Includes ----------//
 #include "Arduino.h"
 #include "Sensor.h"
-#include "PS2Mouse.h"
 #include "MPU9250.h"
 
 //---------- Variables ----------//
-MPU9250 mpu;
-PS2Mouse mouse(PG11, PG14);  // CLK, DATA
+//MPU9250 mpu;
 
-const float dpi   = 1000.0/25.4;     // point/mm, vitesse max 31cm/s avant overflow
 const float gVbat = 11.5*3.3/4096.0; // Correction du diviseur de tension
 
 const float seuil_1 = 24.0; // V
@@ -32,7 +29,7 @@ float vBat  = 0.0;
 //---------- Functions ----------//
 void setupSensor() {
   //IMU
-  Wire.setSDA(PB7);
+  /*Wire.setSDA(PB7);
   Wire.setSCL(PB6);
   Wire.begin();
   mpu.setup(0x68);
@@ -41,7 +38,7 @@ void setupSensor() {
   mpu.setGyroBias(0, 0 ,0);
   mpu.setMagBias(396.20, 155.50, 244.56);
   mpu.setMagScale(0.66, 1.59, 1.17);
-  mpu.setMagneticDeclination(1);
+  mpu.setMagneticDeclination(1);*/
                
   //LED Buzzer VBAT
   pinMode(LED_ON, OUTPUT);
@@ -58,9 +55,6 @@ void setupSensor() {
   digitalWrite(VLOGIC, HIGH);
   buzzer();
 
-  //Mouse
-  mouse.begin();
-
   //Stop
   /*pinMode(STOP_PIN_A, INPUT_PULLUP);
   pinMode(STOP_PIN_R, INPUT_PULLUP);
@@ -74,16 +68,8 @@ void setupSensor() {
 }
 
 void getYawAngle() {
-  mpu.update();
-  angle = mpu.getYaw();
-}
-
-void getMouseXY() {
-  uint8_t stat;
-  int xBit,yBit;  
-  mouse.getPosition(stat,xBit,yBit);
-  x += xBit/dpi;
-  y += yBit/dpi;
+  /*mpu.update();
+  angle = mpu.getYaw();*/
 }
 
 void powerMonitoring() {

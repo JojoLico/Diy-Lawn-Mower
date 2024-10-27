@@ -9,7 +9,6 @@
 
 //---------- Includes ----------//
 #include "Control.h"
-#include "Navigator.h"
 #include "Communicator.h"
 #include "Sensor.h"
 
@@ -24,8 +23,6 @@ void setup() {
 void loop() {
   serialAvailable();
   serialSendData();
-  refreshAspirationSpeed();
-  getMouseXY();
   getYawAngle();
 }
 

@@ -5,6 +5,8 @@
 #include "Arduino.h"
 #include "Motor.h"
 
+//---------- Variables ----------//
+
 //---------- Functions ----------//
 void setupControl();
 void avancer(int speedMotorP);
@@ -20,7 +22,6 @@ void runMotorPosition();
 void controlWaypoints(int distance1, int distance2, int distance3, int distance4);
 bool ralliementWaypoints();
 void controlAspirationSpeed(int aspirationCommandP);
-void refreshAspirationSpeed(void);
 void roomba(void);
 
 #endif

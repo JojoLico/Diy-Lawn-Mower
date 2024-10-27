@@ -6,6 +6,5 @@ void setupSensor();
 void buzzer();
 void getYawAngle();
 void powerMonitoring();
-void getMouseXY();
 
 #endif

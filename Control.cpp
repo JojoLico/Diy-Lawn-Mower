@@ -2,17 +2,20 @@
 #include "Arduino.h"
 #include "Motor.h"
 #include "Control.h"
-#include <SoftServo.h>
+#include <Servo.h>
 
 //---------- Variables ----------//
-Motor motor1 = Motor(PF2, PF1, PE9, PC13, PC13);
-Motor motor2 = Motor(PD7, PE8, PE11, PE3, PE3);
-Motor motor3 = Motor(PC0, PC2, PE13, PE1, PE1);
-Motor motor4 = Motor(PC3, PA0, PE14, PD4, PD4);
+SoftwareSerial softSerialMotor1(PC13, PC13);
+SoftwareSerial softSerialMotor2(PE3, PE3);
+SoftwareSerial softSerialMotor3(PE1, PE1);
+SoftwareSerial softSerialMotor4(PD4, PD4);
 
-SoftServo aspiration;
+Motor motor1 = Motor(PF2, PF1, PE9, softSerialMotor1);
+Motor motor2 = Motor(PD7, PE8, PE11, softSerialMotor2);
+Motor motor3 = Motor(PC0, PC2, PE13, softSerialMotor3);
+Motor motor4 = Motor(PC3, PA0, PE14, softSerialMotor4);
 
-const uint8_t BROSSE = PD12;
+Servo aspiration;
 const uint8_t MOTOR  = PC1;
 
 //---------- Functions ----------//
@@ -35,7 +38,6 @@ void setupControl () {
     motor3.setupMotor();
     motor4.setupMotor();
     aspiration.attach(MOTOR);
-    pinMode(BROSSE, OUTPUT);
 }
 
 void avancer(int speedMotorP) {
@@ -110,18 +112,8 @@ void runMotorPosition() {
 
 void controlAspirationSpeed(int aspirationCommandP) {
    aspiration.writeMicroseconds(1000 + 10*aspirationCommandP);
-   if (aspirationCommandP == 0) digitalWrite(BROSSE, LOW); else digitalWrite(BROSSE, HIGH);
-}
-
-void refreshAspirationSpeed() {
-   aspiration.refresh();
 }
 
 void roomba(void) {
-  if (flagWaypoints) {
-    runWaypoints();
-    runMotorPosition();
-  } else {
     runMotorSpeed();
-  } 
 }

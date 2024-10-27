@@ -2,8 +2,6 @@
 #include "Arduino.h"
 #include "Communicator.h"
 #include "Control.h"
-#include "Navigator.h"
-#include "Save.h"
 #include "Sensor.h"
 
 //---------- Variables ----------//
@@ -45,30 +43,6 @@ void updateControl() {
       break;
     case 'M':
       controlAspirationSpeed(serialReadData(IN_ASPIRATION));
-      break;
-    case 'C':
-      addWaypoint(serialReadData(IN_X), serialReadData(IN_Y));
-      break;
-    case 'O':
-      goWaypoint();
-      break;
-    case 'P':
-      pauseWaypoint();
-      break;
-    case 'F':
-      clearWaypoints();
-      break;
-    case 'X':
-      suppWaypoints();
-      break;
-    case 'J':
-      repWaypoints();
-      break;
-    case 'W':
-      saveSequence(serialReadData(IN_NUM));
-      break;
-    case 'B':
-      readSequence(serialReadData(IN_NUM));
       break;
     default:
       break;
