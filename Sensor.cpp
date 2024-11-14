@@ -21,9 +21,6 @@ const uint8_t LED_ON     = PD3;
 const uint8_t VLOGIC     = PF8;
 const uint8_t VBAT_PIN   = PE5;
 
-float x     = 0.0;
-float y     = 0.0;
-float angle = 0.0;
 float vBat  = 0.0;
 
 //---------- Functions ----------//
@@ -67,13 +64,22 @@ void setupSensor() {
 
 }
 
-void getYawAngle() {
+float getYawAngle() {
   /*mpu.update();
-  angle = mpu.getYaw();*/
+  return mpu.getYaw();*/
+  return 0.0;
 }
 
-void powerMonitoring() {
-  vBat = gVbat*analogRead(VBAT_PIN);           //convert ADC tension divider
+float getXposition() {
+  return 0.0; 
+}
+
+float getYposition() {
+  return 0.0; 
+}
+
+float powerMonitoring() {
+  float vBat = gVbat*analogRead(VBAT_PIN);           //convert ADC tension divider
   if (vBat > seuil_1 || vBat < 3.3) {
     digitalWrite(LED_LEVEL1, HIGH);
     digitalWrite(LED_LEVEL2, HIGH);
@@ -92,6 +98,7 @@ void powerMonitoring() {
     digitalWrite(LED_LEVEL3, LOW);
     buzzer();
   }
+  return vBat;
 }
 
 void buzzer() {

@@ -18,17 +18,13 @@
 #define OUT_VBAT      6
 
 //---------- Variables ----------//
-extern float  x;
-extern float  y;
-extern float  angle;
-extern float  vBat;
 
 //---------- Functions ----------//
 void updateControl();
 void serialAvailable();
 void setupSerial();
 void serialSendData();
-void debugSerial();
+void debugSerial(float vBat, float  angle, float  x, float y);
 int serialReadData(int pos);
 char serialReadCommand(int pos);
 int byteDivider(int number);

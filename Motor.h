@@ -1,13 +1,15 @@
 #ifndef Motor_h
 #define Motor_h
 
-//---------- Includes ----------//
+//---------- Includes ---------//
 #include "Arduino.h"
 #include <TMC2209.h>
 #include <AccelStepper.h>
 #include <SoftwareSerial.h>
 
 //---------- Defines ----------//
+
+//--------- Variables ---------//
 
 //---------- Classes ----------//
 class Motor {

@@ -5,6 +5,8 @@
 #include "Arduino.h"
 #include "Motor.h"
 
+//----------- Defines -----------//
+
 //---------- Variables ----------//
 
 //---------- Functions ----------//

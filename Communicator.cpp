@@ -66,7 +66,10 @@ void setupSerial() {
 void serialSendData() {
   static long current_time = 0; //ms
   if (Serial6 && ((millis()-current_time) > TIME_SEND_DATA)) {
-    powerMonitoring();
+    float vBat = powerMonitoring();
+    float angle = getYawAngle();
+    float x = getXposition();
+    float y = getYposition();
     dataSent[OUT_ANGLE]     = byte( byteDivider(angle) );
     dataSent[OUT_ANGLE + 1] = byte(angle);
     
@@ -81,7 +84,7 @@ void serialSendData() {
     
     Serial6.write(dataSent, BUFFER_LENGTH_SENT);
     current_time = millis();
-    debugSerial();
+    debugSerial(vBat, angle, x ,y);
   }
 }
 
@@ -97,9 +100,9 @@ int byteDivider (int number) {                                              //Di
   return number >> 8;
 }
 
-void debugSerial () {                                                       //Variable to serial
+void debugSerial (float vBat, float  angle, float  x, float y) {                                                     //Variable to serial
   Serial.println("angle : " + String(angle) + "°");
-  Serial.println("x : " + String(x));
-  Serial.println("x : " + String(y));
-  Serial.println("Vbat : " + String(vBat) + "V");
+  Serial.println("x : " + String(x) + "m");
+  Serial.println("y : " + String(y) + "m");
+  Serial.println("vBat : " + String(vBat) + "V");
 }

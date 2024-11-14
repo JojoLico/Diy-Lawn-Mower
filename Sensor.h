@@ -1,10 +1,17 @@
 #ifndef Sensor_h
 #define Sensor_h
 
-//---------- Functions ----------//
+//---------- Defines ----------//
+
+//--------- Variables ---------//
+
+//--------- Functions ---------//
 void setupSensor();
 void buzzer();
-void getYawAngle();
-void powerMonitoring();
+
+float powerMonitoring();
+float getYawAngle();
+float getXposition();
+float getYposition();
 
 #endif

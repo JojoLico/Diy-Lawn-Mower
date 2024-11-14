@@ -23,7 +23,6 @@ void setup() {
 void loop() {
   serialAvailable();
   serialSendData();
-  getYawAngle();
 }
 
 void setupTimer3() {
