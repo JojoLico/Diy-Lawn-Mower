@@ -5,15 +5,15 @@
 #include <Servo.h>
 
 //---------- Variables ----------//
-SoftwareSerial softSerialMotor1(PC13, PC13);
-SoftwareSerial softSerialMotor2(PE3, PE3);
-SoftwareSerial softSerialMotor3(PE1, PE1);
-SoftwareSerial softSerialMotor4(PD4, PD4);
+SoftwareSerial softSerialMotor1(PE4, PC13); // X RX, TX
+SoftwareSerial softSerialMotor2(PE2, PE3); // Y
+SoftwareSerial softSerialMotor3(PD0, PD1); // E1
+SoftwareSerial softSerialMotor4(PD2, PD4); // E0
 
-Motor motor1 = Motor(PF2, PF1, PE9, softSerialMotor1);
-Motor motor2 = Motor(PD7, PE8, PE11, softSerialMotor2);
-Motor motor3 = Motor(PC0, PC2, PE13, softSerialMotor3);
-Motor motor4 = Motor(PC3, PA0, PE14, softSerialMotor4);
+Motor motor1 = Motor(PF2, PF1, PE9, softSerialMotor1);  // X EN, DIR, STEP
+Motor motor2 = Motor(PD7, PE8, PE11, softSerialMotor2); // Y
+Motor motor3 = Motor(PA3, PE7, PD15, softSerialMotor3); // E1
+Motor motor4 = Motor(PC3, PA0, PE14, softSerialMotor4); // E0
 
 Servo aspiration;
 const uint8_t MOTOR  = PC1;
@@ -21,10 +21,10 @@ const uint8_t MOTOR  = PC1;
 //---------- Functions ----------//
 
 void setupControl () {
-    motor1.setupMotor();
-    motor2.setupMotor();
-    motor3.setupMotor();
-    motor4.setupMotor();
+    motor1.setupMotor(false);
+    motor2.setupMotor(true);
+    motor3.setupMotor(true);
+    motor4.setupMotor(false);
     aspiration.attach(MOTOR);
 }
 

@@ -7,6 +7,7 @@
 
 //--------- Functions ---------//
 void setupSensor();
+void watchdog();
 
 float powerMonitoring();
 

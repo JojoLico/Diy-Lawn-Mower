@@ -3,9 +3,10 @@
 #include "Motor.h"
 
 //---------- Functions ----------//
-Motor::Motor(uint16_t EN_PIN, uint16_t DIR_PIN, uint16_t STEP_PIN, SoftwareSerial softSerial) {
+Motor::Motor(uint16_t EN_PIN, uint16_t DIR_PIN, uint16_t STEP_PIN, SoftwareSerial &softSerial) {
 
-  _driver.setup(softSerial);
+  //_driver.setup(softSerial);
+  _driver.setHardwareEnablePin(EN_PIN);
   _driver.setRunCurrent(100); // %
   _driver.enableCoolStep();
   _driver.enable();
@@ -19,10 +20,10 @@ Motor::Motor(uint16_t EN_PIN, uint16_t DIR_PIN, uint16_t STEP_PIN, SoftwareSeria
   digitalWrite(EN_PIN, LOW);
   }
 
-void Motor::setupMotor() {
+void Motor::setupMotor(bool invP) {
   stepper.setMaxSpeed(_max_speed*_step_per_mm);            // 100mm/s @ 80 steps/mm
   stepper.setAcceleration(_max_acceleration*_step_per_mm); // 100mm/s^2
-  stepper.setPinsInverted(false, false, true);
+  stepper.setPinsInverted(invP, false, true); // dir, step, en
   delay(50);
 }
 

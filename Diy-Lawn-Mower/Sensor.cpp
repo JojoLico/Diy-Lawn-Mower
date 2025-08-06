@@ -13,7 +13,7 @@ const float seuil_3 = 19.8; // V
 const uint8_t LED_LEVEL1 = PF9;
 const uint8_t LED_LEVEL2 = PC5;
 const uint8_t LED_LEVEL3 = PG13;
-const uint8_t LED_ON     = PD3;
+const uint8_t LED_ON     = PA7;
 const uint8_t VBAT_PIN   = PE5;
 
 float vBat  = 0.0;
@@ -55,4 +55,8 @@ float powerMonitoring() {
     digitalWrite(LED_LEVEL3, LOW);
   }
   return vBat;
+}
+
+void watchdog() {
+  digitalWrite(LED_ON, !digitalRead(LED_ON));
 }

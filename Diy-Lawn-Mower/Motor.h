@@ -14,8 +14,8 @@
 //---------- Classes ----------//
 class Motor {
   public:
-    Motor(uint16_t EN_PIN, uint16_t DIR_PIN, uint16_t STEP_PIN, SoftwareSerial softSerial);
-    void setupMotor();
+    Motor(uint16_t EN_PIN, uint16_t DIR_PIN, uint16_t STEP_PIN, SoftwareSerial &softSerial);
+    void setupMotor(bool invP);
     void motionContinuous(int speedMotorP);
     void motionStop();
     AccelStepper stepper;
