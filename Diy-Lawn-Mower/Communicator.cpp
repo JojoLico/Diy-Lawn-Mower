@@ -55,7 +55,10 @@ void serialSendData() {
     
     Serial6.write(dataSent, BUFFER_LENGTH_SENT);
     current_time = millis();
+    
+    powerMonitoring();
     debugSerial(vBat);
+    watchdog();
   }
 }
 
