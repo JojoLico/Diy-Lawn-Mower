@@ -7,11 +7,8 @@
 
 //--------- Functions ---------//
 void setupSensor();
-void buzzer();
 
 float powerMonitoring();
-float getYawAngle();
-float getXposition();
-float getYposition();
+
 
 #endif

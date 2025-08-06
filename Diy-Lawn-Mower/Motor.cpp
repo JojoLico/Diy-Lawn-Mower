@@ -35,7 +35,3 @@ void Motor::motionStop() {
   stepper.setSpeed(0);
   stepper.enableOutputs();
 }
-
-uint16_t Motor::getStepPermm() {
-  return _step_per_mm;
-}

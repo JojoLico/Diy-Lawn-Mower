@@ -18,7 +18,6 @@ class Motor {
     void setupMotor();
     void motionContinuous(int speedMotorP);
     void motionStop();
-    uint16_t getStepPermm();
     AccelStepper stepper;
   private:
     uint16_t _step_per_mm      = 80;  //mm/step
