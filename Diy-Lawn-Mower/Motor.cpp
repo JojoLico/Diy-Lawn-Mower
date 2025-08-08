@@ -1,11 +1,14 @@
 //---------- Includes ----------//
-#include "Arduino.h"
 #include "Motor.h"
 
 //---------- Functions ----------//
-Motor::Motor(uint16_t EN_PIN, uint16_t DIR_PIN, uint16_t STEP_PIN, SoftwareSerial &softSerial) {
 
-  //_driver.setup(softSerial);
+Motor::Motor(uint16_t EN_PIN, uint16_t DIR_PIN, uint16_t STEP_PIN, SoftwareSerial &softSerial) {
+  Motor(EN_PIN, DIR_PIN, STEP_PIN);
+  _driver.setup(softSerial);
+  }
+
+Motor::Motor(uint16_t EN_PIN, uint16_t DIR_PIN, uint16_t STEP_PIN) {
   _driver.setHardwareEnablePin(EN_PIN);
   _driver.setRunCurrent(100); // %
   _driver.enableCoolStep();
@@ -21,14 +24,14 @@ Motor::Motor(uint16_t EN_PIN, uint16_t DIR_PIN, uint16_t STEP_PIN, SoftwareSeria
   }
 
 void Motor::setupMotor(bool invP) {
-  stepper.setMaxSpeed(_max_speed*_step_per_mm);            // 100mm/s @ 80 steps/mm
-  stepper.setAcceleration(_max_acceleration*_step_per_mm); // 100mm/s^2
+  stepper.setMaxSpeed(_max_speed);
+  stepper.setAcceleration(_max_acceleration);
   stepper.setPinsInverted(invP, false, true); // dir, step, en
   delay(50);
 }
 
 void Motor::motionContinuous(int speedMotorP) {
-  stepper.setSpeed(speedMotorP*_step_per_mm);
+  stepper.setSpeed(speedMotorP);
   stepper.enableOutputs();
 }
 

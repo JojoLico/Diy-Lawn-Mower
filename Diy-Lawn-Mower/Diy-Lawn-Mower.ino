@@ -14,9 +14,6 @@ void setup() {
   setupSerial();
   setupControl();
   setupTimer3();
-
-  enable();
-  setRunSpeed(100, 100, 100, 100);
 }
 
 void loop() {
@@ -27,7 +24,7 @@ void loop() {
 void setupTimer3() {
   TIM_TypeDef *Instance3 = TIM3;
   HardwareTimer *timer3 = new HardwareTimer(Instance3);
-  timer3->setOverflow(1000, HERTZ_FORMAT); // Hz
+  timer3->setOverflow(50000, HERTZ_FORMAT); // Hz
   timer3->attachInterrupt(runMotorSpeed);
   timer3->resume();
 }

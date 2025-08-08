@@ -15,13 +15,13 @@
 class Motor {
   public:
     Motor(uint16_t EN_PIN, uint16_t DIR_PIN, uint16_t STEP_PIN, SoftwareSerial &softSerial);
+    Motor(uint16_t EN_PIN, uint16_t DIR_PIN, uint16_t STEP_PIN);
     void setupMotor(bool invP);
     void motionContinuous(int speedMotorP);
     void motionStop();
     AccelStepper stepper;
   private:
-    uint16_t _step_per_mm      = 80;  //mm/step
-    uint16_t _max_speed        = 70;  //step/s
+    uint16_t _max_speed        = 4100;  //step/s
     uint16_t _max_acceleration = 100; //step/s²
     TMC2209 _driver;
 };

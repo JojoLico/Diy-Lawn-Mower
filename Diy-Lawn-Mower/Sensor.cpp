@@ -1,5 +1,4 @@
 //---------- Includes ----------//
-#include "Arduino.h"
 #include "Sensor.h"
 
 //---------- Variables ----------//
@@ -34,9 +33,9 @@ void setupSensor() {
   digitalWrite(LED_LEVEL3, HIGH);
 }
 
-float powerMonitoring() {
+void powerMonitoring() {
   //convert ADC tension divider
-  float vBat = gVbat*analogRead(VBAT_PIN);           
+  vBat = gVbat*analogRead(VBAT_PIN);           
   if (vBat > seuil_1 || vBat < 3.3) {
     digitalWrite(LED_LEVEL1, HIGH);
     digitalWrite(LED_LEVEL2, HIGH);
@@ -54,9 +53,12 @@ float powerMonitoring() {
     digitalWrite(LED_LEVEL2, LOW);
     digitalWrite(LED_LEVEL3, LOW);
   }
-  return vBat;
 }
 
 void watchdog() {
   digitalWrite(LED_ON, !digitalRead(LED_ON));
+}
+
+float getVbat() {
+  return vBat;
 }
